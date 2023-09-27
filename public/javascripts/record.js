@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const deleteButton = document.getElementById('delete');
   let mediaRecorder;
   let audioChunks = [];
+  const headers = new Headers();
+// You need to set the 'Content-Type' header to 'multipart/form-data'
+  headers.append('Content-Type', 'multipart/form-data');
 
   startRecordingButton.addEventListener('click', () => {
     navigator.mediaDevices
@@ -44,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetch('/record/save', {
       method: 'POST',
+      headers: headers,
       body: audioFormData,
     })
       .then((response) => {
