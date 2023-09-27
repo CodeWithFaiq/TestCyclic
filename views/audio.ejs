@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Audio List</title>
+</head>
+
+<body>
+    <h1>Audio List</h1>
+    <ul>
+        <% audios.forEach((audio)=> { %>
+            <li>
+                <audio controls>
+                    <source src="/audio/<%= audio._id %>" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio>
+
+            </li>
+            <% }); %>
+    </ul>
+</body>
+
+</html>
