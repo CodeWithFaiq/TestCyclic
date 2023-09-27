@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
   res.render('record', { audioId }); // Pass the audioId as a variable to the template
 });
 
-router.post('/record/save',  async (req, res) => {
+router.post('/record/save', upload.single('audio'),  async (req, res) => {
   console.log('from here');
     const audioData = req.file.buffer;
 
