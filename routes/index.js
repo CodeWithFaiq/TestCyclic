@@ -23,7 +23,47 @@ router.get('/', (req, res) => {
 });
 
 router.post('/record/save', upload.single('audio'),  async (req, res) => {
-  console.log(req.file.buffer);
+  
+    const audioData = req.file.buffer;
+
+    // Access the GridFS instance initialized in app.js
+    const gfs = req.app.get('gfs');
+
+    // Store the audio in GridFS
+    const uploadStream = gfs.openUploadStream('recorded_audio.wav', {
+        contentType: 'audio/wav',
+    });
+
+    // Pipe the audio data to the GridFS upload stream
+    const readStream = new Readable();
+    readStream.push(audioData);
+    readStream.push(null);
+    readStream.pipe(uploadStream);
+
+    // Handle upload completion and errors
+    uploadStream.on('error', (error) => {
+        console.error('Error saving audio to GridFS:', error);
+        res.status(500).send('Error saving audio.');
+    });
+
+    uploadStream.on('finish', async () => {
+        console.log('Audio saved successfully to GridFS.');
+
+        // Create an Audio document that references the GridFS file ID
+        const audio = new Audio({
+            filename: 'recorded_audio.wav',
+            contentType: 'audio/wav',
+            gridfsFileId: uploadStream.id, // Store the GridFS file ID
+        });
+
+        // Save the Audio document to MongoDB
+        await audio.save();
+
+        res.status(200).send('Audio saved successfully.');
+
+        
+
+    
 
         // Set the file to be publicly accessible
 
