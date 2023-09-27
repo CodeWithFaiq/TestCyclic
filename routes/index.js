@@ -39,6 +39,7 @@ router.post('/record/save',  async (req, res) => {
 
         // This code will process each non-file field in the form.
         busboy.on('field', (fieldname, val) => {
+            console.log('in field');
             /**
              *  TODO(developer): Process submitted field values here
              */
@@ -52,6 +53,7 @@ router.post('/record/save',  async (req, res) => {
 
         // This code will process each file uploaded.
         busboy.on('file', (fieldname, file, { filename }) => {
+            console.log('in file 2')
             fileName = filename
             // Note: os.tmpdir() points to an in-memory file system on GCF
             // Thus, any files in it must fit in the instance's memory.
