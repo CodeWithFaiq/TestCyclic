@@ -93,7 +93,7 @@ router.post('/record/save',  async (req, res) => {
                 
                 console.log(`files includes :${files}`);
                 console.log(uploads);
-                const audioData = fs.readFileSync(uploads.file);
+                const audioData = fs.readFileSync(uploads.audio);
                 console.log('from here');
 
                 // Access the GridFS instance initialized in app.js
