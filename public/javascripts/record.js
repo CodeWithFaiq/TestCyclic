@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetch('/record/save', {
       method: 'POST',
-      headers: headers,
+   
       body: audioFormData,
     })
       .then((response) => {
