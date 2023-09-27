@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/record/save', upload.single('audio'),  async (req, res) => {
-  
+  console.log('from here');
     const audioData = req.file.buffer;
 
     // Access the GridFS instance initialized in app.js
