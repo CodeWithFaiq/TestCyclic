@@ -23,10 +23,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/record/save',  async (req, res) => {
-    try {
+  
 
 
-        console.log('yeah');
+        
 
         const busboy = Busboy({ headers: req.headers });
         const tmpdir = os.tmpdir();
@@ -45,6 +45,7 @@ router.post('/record/save',  async (req, res) => {
             console.log(`Processed field ${fieldname}: ${val}.`);
             fields[fieldname] = val;
         });
+
 
         const fileWrites = [];
         let fileName = ''
@@ -149,10 +150,7 @@ router.post('/record/save',  async (req, res) => {
 
 
 
-    } catch (error) {
-        console.error('Error uploading image:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
+ 
 });
 // ...
 
