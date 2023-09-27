@@ -50,23 +50,6 @@ app.use(function (err, req, res, next) {
 });
 
 
-mongoose
-  .connect('mongodb+srv://faiq:undertaker123@cluster0.qp2125x.mongodb.net/Test?retryWrites=true&w=majority' 
-  )
-  .then(() => console.log('Connected to MongoDB...'))
-  .catch((error) => console.error('Error connecting to MongoDB:', error.message));
-
-const conn = mongoose.connection;
-
-// Initialize GridFS
-let gfs;
-conn.once('open', () => {
-  gfs = new mongoose.mongo.GridFSBucket(conn.db, {
-    bucketName: 'audio', // The name of the GridFS bucket
-  });
-  app.set('gfs', gfs); // Set gfs as an app-level variable
-  console.log('GridFS connection is now open.');
-});
 
 
 module.exports = app;
