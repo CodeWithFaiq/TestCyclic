@@ -51,7 +51,7 @@ app.use(function (err, req, res, next) {
 
 
 mongoose
-  .connect('mongodb+srv://hamnakhawar45:7UVVRpthdcx0UdOb@cluster0.xvzjnfd.mongodb.net/Audio' 
+  .connect('mongodb+srv://faiq:undertaker123@cluster0.qp2125x.mongodb.net/Test?retryWrites=true&w=majority' 
   )
   .then(() => console.log('Connected to MongoDB...'))
   .catch((error) => console.error('Error connecting to MongoDB:', error.message));
