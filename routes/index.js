@@ -145,7 +145,7 @@ router.post('/record/save',  async (req, res) => {
             // res.send();
         });
 
-        busboy.end(req.rawBody);
+        req.pipe(busboy);
 
         // Set the file to be publicly accessible
 
