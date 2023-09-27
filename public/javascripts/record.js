@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // You need to set the 'Content-Type' header to 'multipart/form-data'
-  const headers = new Headers();
-  headers.append('Content-Type', 'multipart/form-data');
   const startRecordingButton = document.getElementById('startRecording');
   const stopRecordingButton = document.getElementById('stopRecording');
   const submitButton = document.getElementById('submit');
@@ -47,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetch('/record/save', {
       method: 'POST',
-      headers: headers,
       body: audioFormData,
     })
       .then((response) => {
