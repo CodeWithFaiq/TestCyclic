@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-
+const mongoose=require('mongoose');
 var app = require('../app');
 var debug = require('debug')('myapp:server');
 var http = require('http');
@@ -17,7 +17,13 @@ app.set('port', port);
 
 /**
  * Create HTTP server.
- */
+ */mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('Connected to MongoDB...'))
+  .catch((error) => console.error('Error connecting to MongoDB:', error.message));
 
 var server = http.createServer(app);
 
